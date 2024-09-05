@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Keeping Management</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     {% for room in rooms %}
         {{ room.category_name}}<br>
         {{ room.room_number}}<br>
@@ -16,6 +10,4 @@
         {{ room.house_keeping_status }}<br>
         {{ room.house_keeper_id }}<br>
     {% endfor %}
-    
-</body>
-</html>
+{% endblock %}
