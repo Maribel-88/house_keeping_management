@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Keeping Management</title>
+</head>
+<body>
+    {% for room in rooms %}
+        {{ room.category_name}}<br>
+        {{ room.room_number}}<br>
+        {{ room.room_floor }}<br>
+        {{ room.room_status }}<br>
+        {{ room.checkin_date }}<br>
+        {{ room.checkout_date }}<br>
+        {{ room.house_keeping_status }}<br>
+        {{ room.house_keeper_id }}<br>
+    {% endfor %}
+    
+</body>
+</html>
