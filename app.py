@@ -20,8 +20,14 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_rooms")
 def get_rooms():
-    rooms = mongo.db.rooms.find()
+    rooms = list(mongo.db.rooms.find())
     return render_template("rooms.html", rooms=rooms)
+
+
+@app.route("/get_tasks")
+def get_tasks():
+    tasks = list(mongo.db.tasks.find())
+    return render_template("tasks.html", tasks=tasks)
 
 
 @app.route("/register", methods=["GET", "POST"])

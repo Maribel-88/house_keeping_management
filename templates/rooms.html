@@ -10,4 +10,21 @@
         {{ room.house_keeping_status }}<br>
         {{ room.house_keeper_id }}<br>
     {% endfor %}
+
+
+    {% for room in rooms %}
+        <!-- Dropdown Trigger -->
+    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>{{room.category_name}}</a>
+
+    <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">Rm101</a></li>
+            <li><a href="#!">Rm102</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a href="#!">Rm103</a></li>
+            <li><a href="#!">Rm104</a></li>
+            <li><a href="#!">Rm105</a></li>    
+        </ul>
+    {% endfor %}
+
 {% endblock %}
