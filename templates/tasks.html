@@ -8,7 +8,7 @@
         <li>
           <div class="collapsible-header white-text teal lighten-2">
             <i class="fas fa-caret-down"></i>
-                <strong>{{ task.room_type}}</strong> : Room{{ task.room_number}}
+                <strong>{{ task.room_type}}</strong> : Room{{ task.room_number}} {{ task.due_date }}
                 {% if task.is_urgent == "on" %}
                     <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
                         data-position="right" data-tooltip="need cleaning ASAP"></i>
@@ -21,6 +21,7 @@
                 <p><strong>{{task.house_keeping_status }}</strong></p>
                 <p><strong>{{ task.house_keeper_id }}</strong></p>
                 <p><strong>{{ task.housekeeping_schedule }}</strong></p>
+                <p><strong>Assigned to: {{ task.employee_name }}</strong></p>
                 <p><em>by:{{ task.created_by }}</em></p>
 
 
