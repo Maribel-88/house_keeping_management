@@ -104,10 +104,28 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_task")
+@app.route("/add_task", methods=["GET", "POST"])
 def add_task():
+    if request.method == "POST":
+        is_urgent = "on" if request.form.get("is_urgent") else "off"
+        task = {
+            "employee_name": request.form.get("employee_name"),
+            "room_type": request.form.get("room_type"),
+            "room_number": request.form.get("room_number"),
+            "due_date": request.form.get("due_date"),
+            "is_urgent": is_urgent,
+            "created_by": session["user"]
+        }
+        mongo.db.tasks.insert_one(task)
+        flash("Task Successfully Added")
+        return redirect(url_for("get_tasks"))
+        
     categories = mongo.db.categories.find().sort("room_type", 1)
-    return render_template("add_task.html", categories=categories)
+    rooms = mongo.db.rooms.find().sort("room_number", 1)
+    housekeepers = mongo.db.housekeepers.find().sort("employee_name", 1)
+
+    return render_template("add_task.html", categories=categories,
+         rooms=rooms, housekeepers=housekeepers)
 
 
 if __name__ == "__main__":

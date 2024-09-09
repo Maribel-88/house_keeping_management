@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
    
-    
+    <h3 class="teal-text text-darken-4 center-align">All Tasks</h3>
+
     <ul class="collapsible">
         {% for task in tasks %}
         <li>
@@ -20,6 +21,7 @@
                 <p><strong>{{task.house_keeping_status }}</strong></p>
                 <p><strong>{{ task.house_keeper_id }}</strong></p>
                 <p><strong>{{ task.housekeeping_schedule }}</strong></p>
+                <p><em>by:{{ task.created_by }}</em></p>
 
 
           </div>
