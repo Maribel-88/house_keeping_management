@@ -11,10 +11,15 @@
                 <div class="input-field col s12">
                     <i class="fas fa-folder-open prefix teal-text text-darken-4"></i>
                     <select id="employee_name" name="employee_name" class="validate" required>
-                    <option value="" disabled selected>Employee Name</option>
+                    <option value="" disabled >Employee Name</option>
                     {% for housekeeper in housekeepers %}
+                        {% if housekeeper.employee_name == task.employee_name %}
+                        <option value="{{- housekeeper.employee_name -}}" selected>
+                            {{- housekeeper.employee_name -}}</option>
+                        {% else %}
                         <option value="{{ housekeeper.employee_name }}">
-                            {{ housekeeper.employee_name }}</option>
+                        {{- housekeeper.employee_name -}}</option>  
+                        {% endif %}
                     {% endfor %}
                     </select>
                     <label for="employee_name">Employee</label>
@@ -27,7 +32,11 @@
                     <select id="room_type" name="room_type" class="validate" required>
                     <option value="" disabled selected>Room Type</option>
                     {% for category in categories %}
+                        {% if category.room_type == task.room_type %}
+                        <option value="{{ category.room_type }}" selected>{{ category.room_type }}</option>
+                        {% else %}
                         <option value="{{ category.room_type }}">{{ category.room_type }}</option>
+                        {% endif %}
                     {% endfor %}
                     </select>
                     <label for="room_type">Category</label>
@@ -40,7 +49,11 @@
                     <select id="room_number" name="room_number" class="validate" required>
                     <option value="" disabled selected>Room No.</option>
                     {% for room in rooms %}
+                        {% if room.room_number == task.room_number %}
+                        <option value="{{ room.room_number }}" selected>{{ room.room_number }}</option>
+                        {% else %}
                         <option value="{{ room.room_number }}">{{ room.room_number }}</option>
+                        {% endif %}
                     {% endfor %}
                     </select>
                     <label for="room_type">Room No.</label>
@@ -50,7 +63,8 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-calendar-alt prefix teal-text text-darken-4"></i>
-                    <input id="due_date" name="due_date" type="text" class="datepicker validate" required>
+                    <input id="due_date" name="due_date" type="text"
+                    value="{{ task.due_date }}" class="datepicker validate" required>
                     <label for="due_date">Due Date</label>
                 </div>
             </div>
@@ -60,7 +74,11 @@
 					<div class="switch">
                         <i class="fas fa-exclamation-circle prefix teal-text text-darken-4"></i>
 						<label for="is_urgent">
+                            {% if task.is_urgent == "on" %}
+                            <input type="checkbox" id="is_urgent" name="is_urgent" checked>
+                            {% else %}
                             <input type="checkbox" id="is_urgent" name="is_urgent">
+                            {% endif %}
                             <span class="lever"></span>
                             Is Urgent
                         </label>
@@ -70,8 +88,12 @@
             <!-- submit button -->
             <div class="row">
                 <div class="col s12 center-align">
+                    <!-- cancel button -->
+                     <a href="{{ url_for('get_tasks')}}" class="btn-large red text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i></a>
                     <button type="submit" class="btn-large teal darken-1 text-shadow">
-                        Edit Task  <i class="fas fa-edit right"></i>
+                        Edit Task<i class="fas fa-edit right"></i>
+                    </button>
                 </div>
             </div>
 
