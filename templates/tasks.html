@@ -1,31 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
    
-    <h3 class="teal-text text-darken-4 center-align">All Tasks</h3>
+    <h3 class="teal-text text-darken-4 center-align">Cleaning Tasks</h3>
 
     <ul class="collapsible">
         {% for task in tasks %}
         <li>
-          <div class="collapsible-header white-text teal lighten-2">
-            <i class="fas fa-caret-down"></i>
-                <strong>{{ task.room_type}}</strong> : Room{{ task.room_number}} {{ task.due_date }}
-                {% if task.is_urgent == "on" %}
-                    <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
-                        data-position="right" data-tooltip="need cleaning ASAP"></i>
-                {% endif %}
+            <div class="collapsible-header white-text teal lighten-2">
+                  <div class="col s3">
+                    <i class="fas fa-caret-down"></i>
+                    <a href="" class="btn-small green accent-4">Done</a>
+                    <a href="" class="btn-small light-blue lighten-1">Edit</a>
+                  </div>
+                  <div class="col s9">
+                    <strong>{{ task.room_type}}</strong> : Room{{ task.room_number}} {{ task.due_date }}
+                      {% if task.is_urgent == "on" %}
+                          <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
+                              data-position="right" data-tooltip="need cleaning ASAP"></i>
+                      {% endif %}
+                  </div>
+                  
             </div>
-          <div class="collapsible-body">
-                <p><strong>{{ task.room_status }}</strong></p>
-                <p><strong>{{ task.checkin_date }}</strong></p>
-                <p><strong>{{ task.checkout_date }}</strong></p>
-                <p><strong>{{task.house_keeping_status }}</strong></p>
-                <p><strong>{{ task.house_keeper_id }}</strong></p>
-                <p><strong>{{ task.housekeeping_schedule }}</strong></p>
-                <p><strong>Assigned to: {{ task.employee_name }}</strong></p>
-                <p><em>by:{{ task.created_by }}</em></p>
+            <div class="collapsible-body">
+                  <p><strong>{{ task.room_status }}</strong></p>
+                  <p><strong>{{ task.checkin_date }}</strong></p>
+                  <p><strong>{{ task.checkout_date }}</strong></p>
+                  <p><strong>{{task.house_keeping_status }}</strong></p>
+                  <p><strong>{{ task.house_keeper_id }}</strong></p>
+                  <p><strong>{{ task.housekeeping_schedule }}</strong></p>
+                  <p><strong>Assigned to: {{ task.employee_name }}</strong></p>
+                  <p><em>by:{{ task.created_by }}</em></p>
 
 
-          </div>
+            </div>
         </li>
         {% endfor %}
     </ul>
