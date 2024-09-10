@@ -14,7 +14,7 @@
                     <option value="" disabled selected>Employee Name</option>
                     {% for housekeeper in housekeepers %}
                         <option value="{{ housekeeper.employee_name }}">
-                            {{ housekeeper.employee_name }}</option>
+                            {{- housekeeper.employee_name -}}</option>
                     {% endfor %}
                     </select>
                     <label for="employee_name">Employee</label>
