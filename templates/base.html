@@ -25,7 +25,9 @@
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="{{ url_for('get_rooms') }}">Rooms</a></li>
                     <li><a href="{{ url_for('get_tasks') }}">Tasks</a></li>
-                    <li><a href="#">Manage Categories</a></li>
+                    {% if session.user|lower == "admin"|lower %}
+                        <li><a href="{{ url_for('get_categories') }}">Manage Categories</a></li>
+                    {% endif %}
                     <li><a href="{{ url_for('add_task') }}">Add Tasks</a></li>
                     <li><a href="#">House Keepers</a></li>
                     <li><a href="{{ url_for('logout') }}">Log Out</a></li>
@@ -46,7 +48,9 @@
                 <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                 <li><a href="{{ url_for('get_rooms') }}">Rooms</a></li>
                 <li><a href="{{ url_for('get_tasks') }}">Tasks</a></li>
-                <li><a href="#">Manage Categories</a></li>
+                {% if session.user|lower == "admin"|lower %}
+                    <li><a href="{{ url_for('get_categories') }}">Manage Categories</a></li>
+                {% endif %}
                 <li><a href="{{ url_for('add_task') }}">Add Tasks</a></li>
                 <li><a href="#">House Keepers</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
