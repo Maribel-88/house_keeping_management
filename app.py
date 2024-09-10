@@ -128,6 +128,19 @@ def add_task():
          rooms=rooms, housekeepers=housekeepers)
 
 
+@app.route("/edit_task/<task_id>", methods=["GET", "POST"])
+def edit_task(task_id):
+    task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
+
+    categories = mongo.db.categories.find().sort("room_type", 1)
+    rooms = mongo.db.rooms.find().sort("room_number", 1)
+    housekeepers = mongo.db.housekeepers.find().sort("employee_name", 1)
+
+    return render_template("edit_task.html", task=task, categories=categories,
+         rooms=rooms, housekeepers=housekeepers)
+
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
     port=int(os.environ.get("PORT")),
