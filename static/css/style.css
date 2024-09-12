@@ -10,12 +10,6 @@ body{
     margin-left: 50px;
 }
 
-@media screen and (max-width: 350px) {
-    .brand-logo {
-        width:max-content
-    }    
-}
-
 
 .flashes h4 {
     line-height: 3;
