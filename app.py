@@ -20,8 +20,13 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_rooms")
 def get_rooms():
-    rooms = list(mongo.db.rooms.find())
-    return render_template("rooms.html", rooms=rooms)
+    categories = list(mongo.db.categories.find())
+    return render_template("rooms.html", categories=categories)
+
+@app.route("/deluxe_rooms")
+def deluxe_rooms():
+    deluxe_rooms = list(mongo.db.deluxe_rooms.find())
+    return render_template("deluxe_rooms.html", deluxe_rooms=deluxe_rooms)
 
 
 @app.route("/get_tasks")
@@ -123,16 +128,23 @@ def add_task():
             "is_urgent": is_urgent,
             "created_by": session["user"]
         }
+        deluxe_room = {
+             "room_type": request.form.get("room_type"),
+            "room_number": request.form.get("room_number"),
+            "assigned_housekeeper": request.form.get("employee_name")
+        }
+
         mongo.db.tasks.insert_one(task)
+        mongo.db.deluxe_rooms.insert_one(deluxe_room)
         flash("Task Successfully Added")
         return redirect(url_for("get_tasks"))
         
     categories = mongo.db.categories.find().sort("room_type", 1)
-    rooms = mongo.db.rooms.find().sort("room_number", 1)
     housekeepers = mongo.db.housekeepers.find().sort("employee_name", 1)
+    deluxe_rooms = mongo.db.deluxe_rooms.find().sort("room_number")
 
     return render_template("add_task.html", categories=categories,
-         rooms=rooms, housekeepers=housekeepers)
+        housekeepers=housekeepers, deluxe_rooms=deluxe_rooms)
 
 
 @app.route("/edit_task/<task_id>", methods=["GET", "POST"])

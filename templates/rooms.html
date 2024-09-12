@@ -1,30 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for room in rooms %}
-        {{ room.category_name}}<br>
-        {{ room.room_number}}<br>
-        {{ room.room_floor }}<br>
-        {{ room.room_status }}<br>
-        {{ room.checkin_date }}<br>
-        {{ room.checkout_date }}<br>
-        {{ room.house_keeping_status }}<br>
-        {{ room.house_keeper_id }}<br>
-    {% endfor %}
 
+    <h3 class="teal-text text-darken-4 center-align">Hotel Rooms</h3>
 
-    {% for room in rooms %}
-        <!-- Dropdown Trigger -->
-    <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>{{room.category_name}}</a>
-
-    <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="#!">Rm101</a></li>
-            <li><a href="#!">Rm102</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="#!">Rm103</a></li>
-            <li><a href="#!">Rm104</a></li>
-            <li><a href="#!">Rm105</a></li>    
-        </ul>
-    {% endfor %}
-
+    
+    <div class="row">
+        {% for category in categories %}
+            <div class="col s12 m3">
+                <div class="card teal lighten-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ category.room_type }}</span> 
+                        <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+              
 {% endblock %}

@@ -39,9 +39,11 @@
                     <i class="fas fa-align-left prefix teal-text text-darken-4"></i>
                     <select id="room_number" name="room_number" class="validate" required>
                     <option value="" disabled selected>Room No.</option>
-                    {% for room in rooms %}
-                        <option value="{{ room.room_number }}">{{ room.room_number }}</option>
+                    <optgroup label="Deluxe Room">
+                    {% for deluxe_room in deluxe_rooms %}
+                        <option value="{{ deluxe_room.room_number }}">{{ deluxe_room.room_number }}</option>
                     {% endfor %}
+                    </optgroup>
                     </select>
                     <label for="room_type">Room No.</label>
                 </div>
