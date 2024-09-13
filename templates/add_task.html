@@ -37,15 +37,15 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix teal-text text-darken-4"></i>
-                    <select id="room_number" name="room_number" class="validate" required>
+                    <select id="room_id" name="room_id" class="validate" required>
                     <option value="" disabled selected>Room No.</option>
                     <optgroup label="Deluxe Room">
                     {% for deluxe_room in deluxe_rooms %}
-                        <option value="{{ deluxe_room.room_number }}">{{ deluxe_room.room_number }}</option>
+                        <option value="{{ deluxe_room._id }}"> {{ deluxe_room.room_number }} </option>
                     {% endfor %}
                     </optgroup>
                     </select>
-                    <label for="room_type">Room No.</label>
+                    <label for="room_id">Room No.</label>
                 </div>
             </div>
             <!-- due date -->

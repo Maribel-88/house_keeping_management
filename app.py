@@ -128,20 +128,21 @@ def add_task():
             "is_urgent": is_urgent,
             "created_by": session["user"]
         }
-        deluxe_room = {
-             "room_type": request.form.get("room_type"),
-            "room_number": request.form.get("room_number"),
+        
+        task_id =  request.form.get("room_id")
+        deluxe_room = {"$set":{
+            "room_type": request.form.get("room_type"),
             "assigned_housekeeper": request.form.get("employee_name")
-        }
+        }}
 
         mongo.db.tasks.insert_one(task)
-        mongo.db.deluxe_rooms.insert_one(deluxe_room)
+        mongo.db.deluxe_rooms.update_one({"_id": ObjectId(task_id)}, deluxe_room )
         flash("Task Successfully Added")
         return redirect(url_for("get_tasks"))
         
     categories = mongo.db.categories.find().sort("room_type", 1)
     housekeepers = mongo.db.housekeepers.find().sort("employee_name", 1)
-    deluxe_rooms = mongo.db.deluxe_rooms.find().sort("room_number")
+    deluxe_rooms = mongo.db.deluxe_rooms.find().sort("_id")
 
     return render_template("add_task.html", categories=categories,
         housekeepers=housekeepers, deluxe_rooms=deluxe_rooms)

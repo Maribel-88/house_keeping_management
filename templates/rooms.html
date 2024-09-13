@@ -9,8 +9,25 @@
             <div class="col s12 m3">
                 <div class="card teal lighten-1">
                     <div class="card-content white-text">
-                        <span class="card-title">{{ category.room_type }}</span> 
-                        <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>
+                        {% if category.room_type|lower == "Deluxe Room"|lower %}
+                            <span class="card-title">{{ category.room_type }}</span> 
+                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>
+                        {% elif category.room_type|lower == "Deluxe Studio Room"|lower%} 
+                            <span class="card-title">{{ category.room_type }}</span> 
+                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>
+                        {% elif category.room_type|lower == "Holiday Room"|lower%} 
+                            <span class="card-title">{{ category.room_type }}</span> 
+                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a> 
+                        {% elif category.room_type|lower == "Premier Studio Room"|lower%} 
+                            <span class="card-title">{{ category.room_type }}</span> 
+                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>
+                        {% elif category.room_type|lower == "Single Room Basic"|lower%} 
+                            <span class="card-title">{{ category.room_type }}</span> 
+                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a> 
+                        {% elif category.room_type|lower == "Standard Double"|lower%} 
+                            <span class="card-title">{{ category.room_type }}</span> 
+                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>   
+                        {% endif %}
                     </div>
                 </div>
             </div>
