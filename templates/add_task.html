@@ -38,16 +38,28 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix teal-text text-darken-4"></i>
                     <select id="room_id" name="room_id" class="validate" required>
-                    <option value="" disabled selected>Room No.</option>
-                    <optgroup label="Deluxe Room">
-                    {% for deluxe_room in deluxe_rooms %}
-                        <option value="{{ deluxe_room._id }}"> {{ deluxe_room.room_number }} </option>
-                    {% endfor %}
-                    </optgroup>
+                        <option value="" disabled selected>Room No.</option>
+                        <optgroup label="Deluxe Studio Room">
+                            {% for deluxe_room in deluxe_rooms %}
+                                <option value="{{ deluxe_room.room_number }}" >{{ deluxe_room.room_number }} </option>
+                            {% endfor %}
+                            </optgroup>
+                            <optgroup label="Deluxe Studio Room">
+                            {% for deluxestudio_room in deluxestudio_rooms %}
+                                <option value="{{ deluxestudio_room.room_number }}" >{{ deluxestudio_room.room_number }} </option>
+                            {% endfor %}
+                            </optgroup>
+                            <optgroup label="Premier Studio Room"></optgroup>
+                            {% for premierstudio_room in premierstudio_rooms %}
+                                <option value="{{ premierstudio_room.room_number }} " >{{ premierstudio_room.room_number }} </option>
+                            {% endfor %}
+                            </optgroup>
                     </select>
                     <label for="room_id">Room No.</label>
                 </div>
             </div>
+
+
             <!-- due date -->
             <div class="row">
                 <div class="input-field col s12">

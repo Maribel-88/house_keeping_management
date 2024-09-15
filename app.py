@@ -21,12 +21,30 @@ mongo = PyMongo(app)
 @app.route("/get_rooms")
 def get_rooms():
     categories = list(mongo.db.categories.find())
-    return render_template("rooms.html", categories=categories)
+    return render_template("get_rooms.html", categories=categories)
 
 @app.route("/deluxe_rooms")
 def deluxe_rooms():
     deluxe_rooms = list(mongo.db.deluxe_rooms.find())
-    return render_template("deluxe_rooms.html", deluxe_rooms=deluxe_rooms)
+    rooms = list(mongo.db.rooms.find())
+    return render_template("deluxe_rooms.html", deluxe_rooms=deluxe_rooms,
+        rooms=rooms)
+
+
+@app.route("/deluxestudio_rooms")
+def deluxestudio_rooms():
+    deluxestudio_rooms = list(mongo.db.deluxestudio_rooms.find())
+    rooms = list(mongo.db.rooms.find())
+    return render_template("deluxestudio_rooms.html", 
+        deluxestudio_rooms=deluxestudio_rooms, rooms=rooms)
+
+
+@app.route("/premierstudio_rooms")
+def premierstudio_rooms():
+    premierstudio_rooms = list(mongo.db.premierstudio_rooms.find())
+    rooms = list(mongo.db.rooms.find())
+    return render_template("premierstudio_rooms.html", 
+        premierstudio_rooms=premierstudio_rooms, rooms=rooms)
 
 
 @app.route("/get_tasks")
@@ -123,29 +141,29 @@ def add_task():
         task = {
             "employee_name": request.form.get("employee_name"),
             "room_type": request.form.get("room_type"),
-            "room_number": request.form.get("room_number"),
+            "room_number": request.form.get("room_id"),
             "due_date": request.form.get("due_date"),
             "is_urgent": is_urgent,
             "created_by": session["user"]
         }
         
-        task_id =  request.form.get("room_id")
-        deluxe_room = {"$set":{
-            "room_type": request.form.get("room_type"),
-            "assigned_housekeeper": request.form.get("employee_name")
-        }}
-
         mongo.db.tasks.insert_one(task)
-        mongo.db.deluxe_rooms.update_one({"_id": ObjectId(task_id)}, deluxe_room )
+        mongo.db.rooms.insert_one(task)
+
         flash("Task Successfully Added")
         return redirect(url_for("get_tasks"))
         
     categories = mongo.db.categories.find().sort("room_type", 1)
     housekeepers = mongo.db.housekeepers.find().sort("employee_name", 1)
     deluxe_rooms = mongo.db.deluxe_rooms.find().sort("_id")
+    deluxestudio_rooms = mongo.db.deluxestudio_rooms.find().sort("_id")
+    premierstudio_rooms = mongo.db.premierstudio_rooms.find().sort("_id")
 
+    
     return render_template("add_task.html", categories=categories,
-        housekeepers=housekeepers, deluxe_rooms=deluxe_rooms)
+        housekeepers=housekeepers, deluxe_rooms=deluxe_rooms,
+        deluxestudio_rooms=deluxestudio_rooms,
+        premierstudio_rooms=premierstudio_rooms )
 
 
 @app.route("/edit_task/<task_id>", methods=["GET", "POST"])
@@ -175,6 +193,7 @@ def edit_task(task_id):
 @app.route("/delete_task/<task_id>")
 def delete_task(task_id):
     mongo.db.tasks.delete_one({"_id": ObjectId(task_id)})
+    mongo.db.rooms.delete_one({"_id": ObjectId(task_id)})
     flash("Task Successfully Deleted")
     return redirect(url_for("get_tasks"))
 

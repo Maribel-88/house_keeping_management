@@ -1,28 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="teal-text text-darken-4 center-align">Deluxe Room</h3>
+<h3 class="teal-text text-darken-4 center-align">Deluxe Studio Room</h3>
 
     
 <div class="row">
-    {% for deluxe_room in deluxe_rooms %}
+    {% for deluxestudio_room in deluxestudio_rooms %}
         <div class="col s12 m4">
             <div class="card teal darken-1">
                 <div class="card-content white-text">
-                    <span class="card-title">{{ deluxe_room.room_number }}</span>
+                    <span class="card-title">{{ deluxestudio_room.room_number }}</span>
                     <ul class="collapsible">
                         <li>
                             <div class="collapsible-header white-text teal lighten-2">Room Status: 
-                                {{ deluxe_room.room_status }}
-                                {% if deluxe_room.is_urgent == "on" %}
-                                    <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
-                                        data-position="right" data-tooltip="need cleaning ASAP"></i>
-                                {% endif %}
+                                {{ deluxestudio_room.room_status }}
+
                             </div>
                             {% for room in rooms %}
                                 <div class="collapsible-body">
-                                    {% if room.room_number == deluxe_room.room_number%}
+                                    {% if room.room_number == deluxestudio_room.room_number%}
                                     <div>
+                                        Room Status: {{ deluxestudio_room.room_status }}
+                                        {% if deluxestudio_room.is_urgent == "on" %}
+                                            <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
+                                            data-position="right" data-tooltip="need cleaning ASAP"></i>
+                                        {% endif %}
                                         <p><strong>Assigned Housekeeper: {{room.employee_name}}</strong></p>
                                         <p>{{ room.is_urgent }}</p>
                                         <p>{{ room.due_date }}</p>
