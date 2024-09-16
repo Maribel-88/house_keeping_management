@@ -7,7 +7,30 @@ body{
 }
 
 .brand-logo {
-    margin-left: 50px;
+    position:relative;
+    justify-content: flex-start;
+    line-height: 25px;
+    width:80%;
+    margin-top: 20px;
+    margin-left: 5px;
+    padding: 50px;
+}
+
+nav.nav-extended {
+    height: 80px;
+    
+}
+
+a:hover {
+    text-decoration: none;
+    color:green;
+    background: none;
+}
+
+.sidenav li>active {
+    background:none;
+    border-radius: 0cm;
+   
 }
 
 
