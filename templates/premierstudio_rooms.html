@@ -12,22 +12,21 @@
                     <span class="card-title">{{ premierstudio_room.room_number }}</span>
                     <ul class="collapsible">
                         <li>
-                            <div class="collapsible-header white-text teal lighten-2">Room Status: 
-                            
+                            <div class="collapsible-header white-text teal lighten-2">
+                                
                             </div>
-                            {% for room in rooms %}
+                            {% for task in tasks %}
                                 <div class="collapsible-body">
-                                    {% if room.room_number == premierstudio_room.room_number%}
+                                    {% if task.room_number == premierstudio_room.room_number%}
                                     <div>
-                                        Room Status: {{ premierstudio_room.room_status }}
-                                        {% if premierstudio_room.is_urgent == "on" %}
-                                            <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
+                                        Room Status: {{ task.room_status }}
+                                        {% if task.is_urgent == "on" %}
+                                        <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
                                             data-position="right" data-tooltip="need cleaning ASAP"></i>
                                         {% endif %}
-                                        <p><strong>Assigned Housekeeper: {{room.employee_name}}</strong></p>
-                                        <p>{{ room.is_urgent }}</p>
-                                        <p>{{ room.due_date }}</p>
-                                        <p>{{ room.created_by }}</p>
+                                        <p><strong>Assigned Housekeeper: {{task.employee_name}}</strong></p>
+                                        <p>{{ task.due_date }}</p>
+                                        <p>{{ task.created_by }}</p>
                                     </div>
                                     {% endif %}
                                 </div>
@@ -38,6 +37,6 @@
             </div>
         </div>
     {% endfor %}
-</div>
+  </div>
 
 {% endblock %}

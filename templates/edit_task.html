@@ -52,7 +52,7 @@
                         {% if room.room_number == task.room_number %}
                         <option value="{{ room.room_number }}" selected>{{ room.room_number }}</option>
                         {% else %}
-                        <option value="{{ room.room_number }}">{{ room.room_number }}</option>
+                        <option value="{{ room.room_number }}">{{ room.room_number }} {{ room.room_type }}</option>
                         {% endif %}
                     {% endfor %}
                     </select>

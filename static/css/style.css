@@ -17,7 +17,7 @@ body{
 }
 
 nav.nav-extended {
-    height: 80px;
+    height: 65px;
     
 }
 
@@ -26,13 +26,6 @@ a:hover {
     color:green;
     background: none;
 }
-
-.sidenav li>active {
-    background:none;
-    border-radius: 0cm;
-   
-}
-
 
 .flashes h4 {
     line-height: 3;

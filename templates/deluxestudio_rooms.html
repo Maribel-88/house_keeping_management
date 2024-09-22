@@ -16,19 +16,19 @@
                                 {{ deluxestudio_room.room_status }}
 
                             </div>
-                            {% for room in rooms %}
+                            {% for task in tasks %}
                                 <div class="collapsible-body">
-                                    {% if room.room_number == deluxestudio_room.room_number%}
+                                    {% if task.room_number == deluxestudio_room.room_number%}
                                     <div>
-                                        Room Status: {{ deluxestudio_room.room_status }}
-                                        {% if deluxestudio_room.is_urgent == "on" %}
+                                        Room Status: {{ task.room_status }}
+                                        {% if task.is_urgent == "on" %}
                                             <i class="fas fa-exclamation-circle white-text  text-lighten-2 tooltipped"
                                             data-position="right" data-tooltip="need cleaning ASAP"></i>
                                         {% endif %}
-                                        <p><strong>Assigned Housekeeper: {{room.employee_name}}</strong></p>
-                                        <p>{{ room.is_urgent }}</p>
-                                        <p>{{ room.due_date }}</p>
-                                        <p>{{ room.created_by }}</p>
+                                        <p><strong>Assigned Housekeeper: {{task.employee_name}}</strong></p>
+                                        <p>{{ task.is_urgent }}</p>
+                                        <p>{{ task.due_date }}</p>
+                                        <p>{{ task.created_by }}</p>
                                     </div>
                                     {% endif %}
                                 </div>

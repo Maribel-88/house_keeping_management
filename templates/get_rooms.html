@@ -21,21 +21,9 @@
                             <span class="card-title">{{ category.room_type }}</span> 
                             <a href="{{ url_for('premierstudio_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>  
 
-                        {% elif category.room_type|lower == "Standard Room"|lower%} 
+                        {% else %} 
                             <span class="card-title">{{ category.room_type }}</span> 
-                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>  
-                        
-                        {% elif category.room_type|lower == "Single Room Basic"|lower%} 
-                            <span class="card-title">{{ category.room_type }}</span> 
-                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>
-                            
-                        {% elif category.room_type|lower == "Summer Sale Room"|lower%} 
-                            <span class="card-title">{{ category.room_type }}</span> 
-                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a>      
-
-                        {% elif category.room_type|lower == "Holiday Room"|lower%} 
-                            <span class="card-title">{{ category.room_type }}</span> 
-                            <a href="{{ url_for('deluxe_rooms') }}" class="teal-text text-darken-4">Available Rooms</a> 
+                            <a href="#" class="teal-text text-darken-4">Available Rooms</a>      
                         {% endif %}
                     </div>
                 </div>
