@@ -58,7 +58,20 @@
                     <label for="room_number">Room No.</label>
                 </div>
             </div>
-
+             
+            <!-- room status -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-folder-open prefix teal-text text-darken-4"></i>
+                    <select id="room_status" name="room_status" class="validate" required>
+                    <option value="" disabled selected>Room Status</option>
+                    {% for room_status in room_status %}
+                        <option value="{{ room_status.room_status }}">{{ room_status.room_status }}</option>
+                    {% endfor %}
+                    </select>
+                    <label for="room_room_status">Room Status</label>
+                </div>
+            </div>
 
             <!-- due date -->
             <div class="row">

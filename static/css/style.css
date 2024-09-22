@@ -17,6 +17,8 @@ body{
 }
 
 nav.nav-extended {
+    padding-bottom: 80px;
+    padding-top: 10px;
     height: 65px;
     
 }
